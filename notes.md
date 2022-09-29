@@ -11,10 +11,12 @@ Data Types
   - Nominal: no intrinsic ordering e.g. apple, orange, tomato
   - Ordinal: clear ordering e.g. small, medium, large
 
+
 # Part 2 - Mean, Median & Mode
 Mean: "average" value
 Mediam: middle value
 Mode: most frequent value
+
 
 # Part 3 - Standard Deviation
 The standard deviation describes how "spread out" values are; a lower standard deviation implies that values are closer to the mean than a higher standard deviation.
@@ -27,3 +29,24 @@ Variance: another measure of spread, the square root of the variance is the stan
 - for each values, find the differene from the mean: [1, 0, 1]
 - square each difference: [1, 0, 1]
 - find the mean, this is the variance: 0.667
+
+
+# Part 4 - Percentile
+Percentiles are used in statistics and are a number that describes the value that a given percent of the values are lower than. For example, for the first 10 fibonacci numbers [0, 1, 1, 2, 3, 5, 8, 13, 21, 34], the 75th percentile is 11.75 meaning 75% of the first 10 fibonacci numbers are less than or equal to 11.75.
+
+
+# Part 5 - Data Distribution
+## How do you generate large data sets?
+It can be difficult to gather real world data, at least at an early stage of a project. To create big data sets for testing, we use the Python module NumPy, which comes with a number of methods to create random data sets, of any size.
+
+## Histogram vs Bar Graph
+A bar graph represents categorical data i.e. where each bar represents a category. A histogram represents continuous data where each bar aggregates a range of values.
+
+# Part 6 - Normal Data Distribution
+A normal or Gaussian distribution defines a set of data who's values are groups around a central point. Using numpy we can specify a normal distribution by the number of values, mean and standard deviation.
+
+For example, the following python code produces a set of 100,000 values where the mean is 5 and the standard deviation is 1 meaning values should be concentrated around 5 and rarely outside the range 4 to 6.
+```python
+import numpy as np
+x = np.random.normal(5.0, 1.0, 100000)
+```
