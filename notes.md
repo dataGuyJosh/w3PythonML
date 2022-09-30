@@ -50,3 +50,23 @@ For example, the following python code produces a set of 100,000 values where th
 import numpy as np
 x = np.random.normal(5.0, 1.0, 100000)
 ```
+
+# Part 7 - Scatter Plot
+You can draw scatter plots with Matplotlib using two arrays (x, y).
+
+# Part 8 - Linear Regression
+- Regression: a measure of the relation between the mean value of one variable (e.g. output) and corresponding values of other variables (e.g. time and cost)
+- Linear Regression: estimates a "straight-line" relationship between variables (y = m * x + c)
+
+Given a linear function derived from real data, we can make predictions about future data. For example, given x/y data as follows:
+
+x = [1, 2, 3]
+y = [2, 3, 4]
+
+The linear function would be y = 1 * x + 1, we can therefore calculate y at x = 4:
+y = 1 * 4 + 1 = 5
+
+Linear regression is not always the best fit, this will result in a value of r close to 0 (rather than -1/1).
+
+# Part 9 - Polynomial Regression
+Non-linear data may fit a polynomial regression better. We often square the value of r (giving the r^2 value).
