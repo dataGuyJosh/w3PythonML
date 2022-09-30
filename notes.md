@@ -70,3 +70,9 @@ Linear regression is not always the best fit, this will result in a value of r c
 
 # Part 9 - Polynomial Regression
 Non-linear data may fit a polynomial regression better. We often square the value of r (giving the r^2 value).
+
+y = a_0 + a_1 * x + a_2 * x ^ 2 + ... + a_n * x ^ n
+Where n is considered the "degree of polynomial".
+
+# Part 10 - Multiple Regression
+Multiple regression is similar to linear regression, however it uses multiple independent variables instead of one. For example, with linear regression we can predict the CO2 emission of a car based on the size of the engine, but with multiple regression we can throw in more variables, like the weight of the car, to make the prediction more accurate.
