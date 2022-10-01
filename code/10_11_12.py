@@ -1,11 +1,14 @@
 import os
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import r2_score
 
 # Part 10
 # load a CSV as a python dataframe
-df = pd.read_csv("~/w3PythonML/data/cars1.csv")
+df = pd.read_csv("~/w3PythonML/data/11_cars1.csv")
 
 # It is common to name the list of independent values with a upper case X,
 # and the list of dependent values with a lower case y.
@@ -50,7 +53,9 @@ lightCarCO2 + (weightDifference * coefficient) = heavyCarCO2
 
 # Part 11
 scale = StandardScaler()
-df = pd.read_csv("~/w3PythonML/data/cars2.csv")
+# important to note that this dataset
+# has the volume converted to litres for the purposes of this example
+df = pd.read_csv("~/w3PythonML/data/11_cars2.csv")
 X = df[['Weight', 'Volume']].values
 y = df['CO2']
 scaledX = scale.fit_transform(X)
@@ -60,3 +65,42 @@ regr.fit(scaledX, y)
 scaled = scale.transform([[2300, 1.3]])
 predictedCO2 = regr.predict([scaled[0]])
 print('Light Car (using scaled values): ', predictedCO2)
+
+
+# Part 12
+np.random.seed(2)
+
+# create a random normal dataset
+x = np.random.normal(3, 1, 100)
+y = np.random.normal(150, 40, 100) / x
+
+# split into test/train data sets
+# train set: dataset ending at index 80
+train_x = x[:80]
+train_y = y[:80]
+# test set: dataset starting at index 80
+test_x = x[80:]
+test_y = y[80:]
+
+
+# generate polynomial function using training data
+model = np.poly1d(np.polyfit(train_x, train_y, 4))
+
+# calculate R^2 values for training data i.e. how well the model estimates the training data
+r2_train = r2_score(train_y, model(train_x))
+r2_test = r2_score(test_y, model(test_x))
+print('R^2 Train: ', r2_train,
+      '\nR^2 Test: ', r2_test,
+      '\ny @ x = 5: ', model(5))
+
+
+fit_line = np.linspace(0, 6, 100)
+# plt.scatter(test_x, test_y)
+# plot training data
+plt.scatter(train_x, train_y)
+# plot fit line where
+# x = list of 100 floast from 0 to 6
+# y = model(x)
+plt.plot(fit_line, model(fit_line))
+
+plt.show()

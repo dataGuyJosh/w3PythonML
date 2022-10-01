@@ -89,3 +89,10 @@ where z = the new value
       u = mean
       s = standard deviation
 
+
+# Part 12 - Train/Test
+Machine learning models are created to predict the outcome of certain events e.g. in previous sections we predicted vehicle CO2 emissions based on weight & engine size. One way of testing model "accuracy" is to train on a subset of data then test on the other subset (train/test datasets).
+
+
+# Part 13 - Decision Tree
+A decisio tree is a flow chart which can "help decision making processes based on previous experience".
