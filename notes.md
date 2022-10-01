@@ -54,6 +54,7 @@ x = np.random.normal(5.0, 1.0, 100000)
 # Part 7 - Scatter Plot
 You can draw scatter plots with Matplotlib using two arrays (x, y).
 
+
 # Part 8 - Linear Regression
 - Regression: a measure of the relation between the mean value of one variable (e.g. output) and corresponding values of other variables (e.g. time and cost)
 - Linear Regression: estimates a "straight-line" relationship between variables (y = m * x + c)
@@ -68,11 +69,23 @@ y = 1 * 4 + 1 = 5
 
 Linear regression is not always the best fit, this will result in a value of r close to 0 (rather than -1/1).
 
+
 # Part 9 - Polynomial Regression
 Non-linear data may fit a polynomial regression better. We often square the value of r (giving the r^2 value).
 
 y = a_0 + a_1 * x + a_2 * x ^ 2 + ... + a_n * x ^ n
 Where n is considered the "degree of polynomial".
 
+
 # Part 10 - Multiple Regression
 Multiple regression is similar to linear regression, however it uses multiple independent variables instead of one. For example, with linear regression we can predict the CO2 emission of a car based on the size of the engine, but with multiple regression we can throw in more variables, like the weight of the car, to make the prediction more accurate.
+
+
+# Part 11 - Scale
+It is sometimes important to adjust disparate variables to a similar scale for comparison. This can be acheived using the z-score, the formula for which is
+z = (x - u) / s
+where z = the new value
+      x = original value
+      u = mean
+      s = standard deviation
+
