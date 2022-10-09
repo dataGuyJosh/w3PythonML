@@ -95,4 +95,8 @@ Machine learning models are created to predict the outcome of certain events e.g
 
 
 # Part 13 - Decision Tree
-A decisio tree is a flow chart which can "help decision making processes based on previous experience".
+A decision tree is a flow chart which can "help decision making processes based on previous experience". 
+Decision trees generally only work on numerical data, as such we often "map" categorical data to numerical data e.g. `{'UK': 0, 'USA': 1, 'N': 2}`.
+
+Target Column: variable being predicted
+Feature Columns: variable(s) which (should) influence the target variable
