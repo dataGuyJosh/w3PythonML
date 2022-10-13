@@ -1,4 +1,4 @@
-Product code,Bureau of Meteorology station number,Year,Month,Day,Rainfall (mm),Period over which rainfall was measured (days),Quality
+Product code,BoM station number,Year,Month,Day,Rainfall (mm),Period over which rainfall was measured (days),Quality
 IDCJAC0009,086096,1910,01,01,,,
 IDCJAC0009,086096,1910,01,02,,,
 IDCJAC0009,086096,1910,01,03,,,

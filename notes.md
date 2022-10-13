@@ -100,3 +100,44 @@ Decision trees generally only work on numerical data, as such we often "map" cat
 
 Target Column: variable being predicted
 Feature Columns: variable(s) which (should) influence the target variable
+
+
+# Part 14 - Confusion Matrix
+What is a confusion matrix?
+- table used in classification problems to assess where errors were made in a model
+- rows represent actual values while columns represent predictions
+- can be made using predictions from a logistic regression
+
+A confusion matrix may have 4 quadrants:
+- True Negative (Top-Left Quadrant)
+- False Positive (Top-Right Quadrant)
+- False Negative (Bottom-Left Quadrant)
+- True Positive (Bottom-Right Quadrant)
+
+|       |   |           |       |
+|-------|---|-----------|-------|
+| True  | F | 8         | 83    |
+| Label | T | 93        | 816   |
+|       |   | F         | T     |
+|       |   | Predicted | Label |
+
+The prefix (True/False) indicates whether the prediction was accurate, the suffix (Positive/Negative) indicates the prediction itself.
+
+A confusion matrix can be used to quantify the quality of a model using metrics such as:
+- accuracy
+  - how often is the model correct?
+  - (TP + TN) / Total Predictions
+- precision
+  - of the positive predictions, how many were correct?
+  - TP / (TP + FP)
+- recall (sensitivity)
+  - of all positive cases, what percentage were predicted positive?
+  - TP / (TP + FN)
+- specificity
+  - of all negative cases, what pecentage were predicted negative?
+  - TN / (TN + FP)
+- F-score
+  - harmonic mean of precision & recall
+  - considers both FP & FN, good for "imbalancd" datasets
+  - 2 * ((P * R) / (P + R))
+  - note that because the formula uses precision and recall, it does not take false negatives into account
