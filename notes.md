@@ -141,3 +141,22 @@ A confusion matrix can be used to quantify the quality of a model using metrics 
   - considers both FP & FN, good for "imbalancd" datasets
   - 2 * ((P * R) / (P + R))
   - note that because the formula uses precision and recall, it does not take false negatives into account
+
+
+# Part 15 - Hierarchical Clustering
+What is hierarchical clustering?
+- an unsupervised (no training or target variable) learning method for clustering (categorizing) data points
+- generates "clusters" by measuring data dissimilarities
+- helps vizualize and interpret relationships between individual datapoints
+
+How does clustering work?
+Agglomerative Clustering: a bottom-up approach with the following steps
+- treat each data point as its own cluster
+- join clusters together based on distance (creating larger clusters)
+- continue this process until all points are part of the same cluster
+
+Hierarchical clustering has several methods for calculating distance & linkage, this tutorial uses 
+- euclidean distance
+- ward linkage method --> tries to minimize variance between clusters
+
+Dendrogram: a diagram which shows hierarchical relationships between objects, used to work out object allocation in clusters (https://www.displayr.com/what-is-dendrogram/)
