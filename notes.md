@@ -160,3 +160,11 @@ Hierarchical clustering has several methods for calculating distance & linkage, 
 - ward linkage method --> tries to minimize variance between clusters
 
 Dendrogram: a diagram which shows hierarchical relationships between objects, used to work out object allocation in clusters (https://www.displayr.com/what-is-dendrogram/)
+
+
+# Part 16 - Logistic Regression
+Logistic regression aims to solve classification problems by predicting categorical outcomes, unlike linear regression which predicts continuous outcomes. Cases with two outcomes are considered binomial, while cases with more outcomes are multinomial (e.g. different species of iris flower).
+
+In logistict regression, the coefficient is the expected change in "log-odds" of having the outcome per unit change in X. Note that we can exponentiate log-odds to find odds (odds = e ^ log_odds).
+
+The coefficient and intercept values can be used to find the probability of an outcome.
