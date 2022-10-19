@@ -167,4 +167,14 @@ Logistic regression aims to solve classification problems by predicting categori
 
 In logistict regression, the coefficient is the expected change in "log-odds" of having the outcome per unit change in X. Note that we can exponentiate log-odds to find odds (odds = e ^ log_odds).
 
-The coefficient and intercept values can be used to find the probability of an outcome.
+The coefficient and intercept values can be used to find the probability of an outcome: probability = odds / (1 + odds)
+
+
+# Part 17 - Grid Search
+The majority of machine learning models contain parameters that can be adjusted to vary how the model learns. For example, the logistic regression model, from sklearn, has a parameter C that controls regularization,which affects the complexity of the model.
+
+Higher values of C tell the model, the training data resembles real world information, place a greater weight on the training data. While lower values of C do the opposite.
+
+How do we pick the best value for C? The best value is dependent on the data used to train the model.
+
+One method is to try out different values and then pick the value that gives the best score. This technique is known as a grid search. If we had to select the values for two or more parameters, we would evaluate all combinations of the sets of values thus forming a grid of values.
