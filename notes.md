@@ -171,10 +171,30 @@ The coefficient and intercept values can be used to find the probability of an o
 
 
 # Part 17 - Grid Search
-The majority of machine learning models contain parameters that can be adjusted to vary how the model learns. For example, the logistic regression model, from sklearn, has a parameter C that controls regularization,which affects the complexity of the model.
+The majority of machine learning models contain parameters that can be adjusted to vary how the model learns. For example, the logistic regression model, from sklearn, has a parameter C that controls regularization, which affects the "complexity" of the model.
 
 Higher values of C tell the model, the training data resembles real world information, place a greater weight on the training data. While lower values of C do the opposite.
 
 How do we pick the best value for C? The best value is dependent on the data used to train the model.
 
 One method is to try out different values and then pick the value that gives the best score. This technique is known as a grid search. If we had to select the values for two or more parameters, we would evaluate all combinations of the sets of values thus forming a grid of values.
+
+Note on Best Practices:
+
+We scored our logistic regression model by using the same data that was used to train it. If the model corresponds too closely to that data, it may not be great at predicting unseen data. This statistical error is known as over fitting.
+
+To avoid being misled by the scores on the training data, we can put aside a portion of our data and use it specifically for the purpose of testing the model. Refer to the lecture on train/test splitting to avoid being misled and overfitting.
+
+
+# Part 18 - Preprocessing Categorical Data
+Data represented by strings cause difficulties in training models which only accept numeric data. Instead of ignoring such (categorical) data, excluding information from the model, it can be transformed.
+
+One Hot Encoding: A linear relationship cannot be determined between categorical & numeric variables. One solution is to create a column representing each group in the category. For each column, the values 1 & 0 will represent the inclusion & exlcusion of the group respectively (one hot encoding).
+
+Use label encoding when
+- number of categories is large (one hot encoding can lead to high memory consumption)
+- order matters e.g. satisfaction rating
+
+Use one hot encoding when
+- order does not matter for a feature e.g. car models
+- feature has few categories
