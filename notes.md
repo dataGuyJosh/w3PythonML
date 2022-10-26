@@ -206,3 +206,21 @@ K-means is an unsupervised learning method for clustering data points. The algor
 First, each data point is randomly assigned to one of the K clusters. Then, we compute the centroid (functionally the center) of each cluster, and reassign each data point to the cluster with the closest centroid. We repeat this process until the cluster assignments for each data point are no longer changing.
 
 K-means clustering requires us to select K, the number of clusters we want to group the data into. The elbow method lets us graph the inertia (a distance-based metric) and visualize the point at which it starts decreasing linearly. This point is referred to as the "eblow" and is a good estimate for the best value for K based on our data.
+
+
+# Part 20 - Bootstrap Aggregation (Bagging)
+Methods such as Decision Trees can be prone to overfitting on training data, leading to poor performance on new data. Bootstrap Aggregation (bagging) is an ensembling method which attempts to resolve overfitting for classification/regression problems.
+
+Bagging aims to improve accuracy and performance of machine learning algorithms. This is done by taking random subsets of a dataset, with replacement, fitting either a classifier (for classification) or regressor (for regression) to each subset.
+
+The predictions for each subset are aggregated through majority vote or averaging for classification and regression respectively, increasing prediction accuracy.
+
+Another form of evaluation
+As bootstrapping chooses random subsets of observations to create classifiers, there are observations that are left out in the selection process. These "out-of-bag" observations can then be used to evaluate the model, similarly to that of a test set. Keep in mind, that out-of-bag estimation can overestimate error in binary classification problems and should only be used as a compliment to other metrics.
+
+Since the samples used in OOB and the test set are different, and the dataset is relatively small, there is a difference in the accuracy. It is rare that they would be exactly the same, OOB should be used as a quick means for estimating error, but is not the only evaluation metric.
+
+Generating Decision Trees from a Bagging Classifier
+As shown previously, it's possible to graph a generated decision tree classifier. It's also possible to see individual trees in an aggregated classifier. This can help users gain understanding on how the bagging model arrives at its predictions.
+
+Note that this is only really functional on smaller datasets, where trees are relatively shallow and narrow making it easy to visualize.
