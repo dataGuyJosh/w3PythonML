@@ -224,3 +224,36 @@ Generating Decision Trees from a Bagging Classifier
 As shown previously, it's possible to graph a generated decision tree classifier. It's also possible to see individual trees in an aggregated classifier. This can help users gain understanding on how the bagging model arrives at its predictions.
 
 Note that this is only really functional on smaller datasets, where trees are relatively shallow and narrow making it easy to visualize.
+
+
+# Part 21 - Cross Validation
+Hyperparameter tuning can lead to better model performance on test sets, however optimizing parameters to test sets can lead to information leakage. This causes the model to perform worse on unseen data, cross validation is used to correct this issue.
+
+## K-Fold
+Training data is split into k subsets, models are trained on k-1 subsets then validated against the remaining subset.
+
+## Stratified K-Fold
+In cases where classes are imbalanced we need a way to account for the imbalance in both the train and validation sets. To do so we can stratify the target classes, meaning that both sets will have an equal proportion of all classes.
+
+## Leave-One-Out (LOO)
+
+Use 1 observation to validate and n-1 observations to train, this technique is exhaustive.
+
+## Leave-P-Out (LPO)
+Use P observations to validate and n-p observations to train, this technique is exhaustive. As we are comparing unique combinations (not to be confused with permutations), this process grows quickly with dataset size.
+
+For example, unique combinations of 2 observations in a dataset of 150 observations:
+- C(n,r)=n!/(r!(n−r)!)
+- 150!÷(2!(150−2)!) = 11175
+
+## Shuffle Split
+Unlike KFold, ShuffleSplit leaves out a percentage of the data, not to be used in the train or validation sets. To do so we must decide what the train and test sizes are, as well as the number of splits.
+
+## When should each technique be used?
+The most important factor to consider when choosing a cross validation technique is dataset size. The following list is arranged from most to least intensive, if memory usage/processing time is a concern, consider using techniques towards the bottom. Otherwise the higher techniques will usually offer better results.
+- Leave-P-Out
+- Leave-One-Out
+- K-Fold/Stratified K-Fold
+- Shuffle Split
+
+These are just a few of the CV methods that can be applied to models. There are many more cross validation classes, with most models having their own class.

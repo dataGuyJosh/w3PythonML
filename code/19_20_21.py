@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn import datasets
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score, KFold, StratifiedKFold, LeaveOneOut, LeavePOut, ShuffleSplit
 from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import BaggingClassifier
@@ -84,15 +84,15 @@ for n_estimators in estimator_range:
     models.append(clf)
     scores.append(accuracy_score(y_true=y_test, y_pred=clf.predict(X_test)))
 
-# generate plot of scores vs n_estimators
-plt.figure(figsize=(9, 6))
-plt.plot(estimator_range, scores)
-# adjust labels and font
-plt.xlabel('n_estimators', fontsize=18)
-plt.ylabel('score', fontsize=18)
-plt.tick_params(labelsize=16)
-# visualize plot
-plt.show()
+# # generate plot of scores vs n_estimators
+# plt.figure(figsize=(9, 6))
+# plt.plot(estimator_range, scores)
+# # adjust labels and font
+# plt.xlabel('n_estimators', fontsize=18)
+# plt.ylabel('score', fontsize=18)
+# plt.tick_params(labelsize=16)
+# # visualize plot
+# plt.show()
 '''
 By iterating through different values for the number of estimators,
 we can see an increase in model performance from 82.2% to 95.5%.
@@ -107,7 +107,58 @@ oob_model = BaggingClassifier(n_estimators=12, oob_score=True, random_state=22)
 oob_model.fit(X_train, y_train)
 
 print(oob_model.oob_score_)
-plt.figure(figsize=(10, 10))
-# plots the first (0th) tree used to vote on the final prediction
-plot_tree(clf.estimators_[11], feature_names=X.columns)
-plt.show()
+
+# plt.figure(figsize=(10, 10))
+# # plots the first (0th) tree used to vote on the final prediction
+# plot_tree(clf.estimators_[0], feature_names=X.columns)
+# plt.show()
+
+# Part 21
+X, y = datasets.load_iris(return_X_y=True)
+
+# K-Fold
+'''
+As we will be trying to classify different species of iris flowers,
+we will need to import a classifier model,
+for this exercise we will be using a DecisionTreeClassifier.
+We will also need to import CV modules from sklearn.
+'''
+clf = DecisionTreeClassifier(random_state=42)
+k_folds = KFold(n_splits=5)
+scores = cross_val_score(clf, X, y, cv=k_folds)
+
+print('Individual Scores:', scores,
+      '\nAverage Score:', scores.mean(),
+      '\nNumber of scores used in Average:', len(scores))
+
+# Stratified K-Fold
+sk_folds = StratifiedKFold(n_splits=5)
+scores = cross_val_score(clf, X, y, cv=sk_folds)
+print('Individual Scores:', scores,
+      '\nAverage Score:', scores.mean(),
+      '\nNumber of scores used in Average:', len(scores))
+
+# Leave-One-Out
+loo = LeaveOneOut()
+scores = cross_val_score(clf, X, y, cv=loo)
+print('Individual Scores:', scores,
+      '\nAverage Score:', scores.mean(),
+      '\nNumber of scores used in Average:', len(scores))
+
+# Leave-P-Out
+lpo = LeavePOut(p=2)
+scores = cross_val_score(clf, X, y, cv=lpo)
+print('Individual Scores:', scores,
+      '\nAverage Score:', scores.mean(),
+      # Unique Pairs (Combinations) of 2 observations
+      # C(n,r)=n!/(r!(n−r)!)
+      # 150!÷(2!(150−2)!) = 11175
+      '\nNumber of scores used in Average:', len(scores))
+
+# Shuffle Split
+ss = ShuffleSplit(train_size=0.6, test_size=0.3, n_splits=5)
+scores = cross_val_score(clf, X, y, cv=ss)
+
+print('Individual Scores:', scores,
+      '\nAverage Score:', scores.mean(),
+      '\nNumber of scores used in Average:', len(scores))
