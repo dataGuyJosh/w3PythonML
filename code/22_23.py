@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, confusion_matrix, roc_auc_score, roc_curve
+from sklearn.neighbors import KNeighborsClassifier
 
 # create an imbalanced dataset
 # where class 0 observations make up 5% of all observations
@@ -67,11 +68,11 @@ def plot_roc_curve(true_y, y_prob):
     plt.ylabel('True Positive Rate')
 
 
-plot_roc_curve(y, y_proba)
-print(f'model 1 AUC score: {roc_auc_score(y, y_proba)}')
-plot_roc_curve(y, y_proba_2)
-print(f'model 2 AUC score: {roc_auc_score(y, y_proba_2)}')
-plt.show()
+# plot_roc_curve(y, y_proba)
+# print(f'model 1 AUC score: {roc_auc_score(y, y_proba)}')
+# plot_roc_curve(y, y_proba_2)
+# print(f'model 2 AUC score: {roc_auc_score(y, y_proba_2)}')
+# plt.show()
 
 '''
 In the data below, we have two sets of probabilites from hypothetical models.
@@ -106,10 +107,10 @@ print('model 1 accuracy:', accuracy_score(y, y_prob_1 > .5),
       '\nmodel 1 AUC:', roc_auc_score(y, y_prob_1),
       '\nmodel 2 AUC:', roc_auc_score(y, y_prob_2))
 
-plot_roc_curve(y, y_prob_1)
-fpr, tpr, thresholds = roc_curve(y, y_prob_2)
-plt.plot(fpr, tpr)
-plt.show()
+# plot_roc_curve(y, y_prob_1)
+# fpr, tpr, thresholds = roc_curve(y, y_prob_2)
+# plt.plot(fpr, tpr)
+# plt.show()
 
 '''
 Even though the accuracies for the two models are similar,
@@ -117,3 +118,45 @@ the model with the higher AUC score will be more reliable
 because it takes into account the predicted probability.
 It is more likely to give you higher accuracy when predicting future data.
 '''
+
+
+# Part 23
+'''
+Create arrays that resemble variables in a dataset.
+We have two input features (x and y) and then a target class (class).
+The input features that are pre-labeled with our target
+class will be used to predict the class of new data.
+Note that while we only use two input features here,
+this method will work with any number of variables.
+'''
+x = [4, 5, 10, 4, 3, 11, 14, 8, 10, 12]
+y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
+classes = [0, 0, 1, 0, 0, 1, 1, 0, 1, 1]
+data = list(zip(x, y))
+'''
+Using the input features and target class,
+we fit a KNN model on the model using 1 nearest neighbor.
+'''
+knn = KNeighborsClassifier(n_neighbors=1)
+knn.fit(data, classes)
+'''
+Then, we can use the same KNN object to predict the class of new, unforeseen data points.
+First we create new x and y features, and then call knn.predict()
+on the new data point to get a class of 0 or 1
+'''
+new_x = 8
+new_y = 21
+new_point = [(new_x, new_y)]
+prediction = knn.predict(new_point)
+# plot data
+plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
+plt.text(x=new_x-1.7, y=new_y-0.7,s=f'new point, class: {prediction[0]}')
+plt.show()
+
+# same as above but with higher K value
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(data, classes)
+prediction = knn.predict(new_point)
+plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
+plt.text(x=new_x-1.7, y=new_y-0.7,s=f'new point, class: {prediction[0]}')
+plt.show()

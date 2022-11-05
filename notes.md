@@ -269,3 +269,10 @@ An AUC score of around .5 would mean that the model is unable to make a distinct
 Because AUC is a metric that utilizes probabilities of the class predictions, we can be more confident in a model that has a higher AUC score than one with a lower score even if they have similar accuracies.
 
 To reiterate, models with higher AUC scores are more likely produce higher accuracy on future data.
+
+
+# Part 23: K Nearest Neighbors (KNN)
+KNN is a simple, superviser machine learning algorithm which can be used for classification or regression tasks, it is also frequently used in missing value imputation. It is based on the idea that the observations closest to a given data point are the most "similar" observations in a data set, we can therefore classify unforeseen points based on the values of the closest existing points. By choosing K, the user can select the number of nearby observations to use in the algorithm.
+
+## How does it work?
+K is the number of nearest neighbors to use, for classification, a majority vote is used to determine which class a new observation belongs to. Larger values of K are often more robust to outliers and produce more stable decision boundaries than very small values.
