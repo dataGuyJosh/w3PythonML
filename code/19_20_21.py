@@ -127,28 +127,32 @@ clf = DecisionTreeClassifier(random_state=42)
 k_folds = KFold(n_splits=5)
 scores = cross_val_score(clf, X, y, cv=k_folds)
 
-print('Individual Scores:', scores,
+print('\nK-Fold',
+      '\nIndividual Scores:', scores,
       '\nAverage Score:', scores.mean(),
       '\nNumber of scores used in Average:', len(scores))
 
 # Stratified K-Fold
 sk_folds = StratifiedKFold(n_splits=5)
 scores = cross_val_score(clf, X, y, cv=sk_folds)
-print('Individual Scores:', scores,
+print('\nStratified K-Fold',
+      '\nIndividual Scores:', scores,
       '\nAverage Score:', scores.mean(),
       '\nNumber of scores used in Average:', len(scores))
 
 # Leave-One-Out
 loo = LeaveOneOut()
 scores = cross_val_score(clf, X, y, cv=loo)
-print('Individual Scores:', scores,
+print('\nLOO',
+      '\nIndividual Scores:', scores,
       '\nAverage Score:', scores.mean(),
       '\nNumber of scores used in Average:', len(scores))
 
 # Leave-P-Out
 lpo = LeavePOut(p=2)
 scores = cross_val_score(clf, X, y, cv=lpo)
-print('Individual Scores:', scores,
+print('\nLPO',
+      '\nIndividual Scores:', scores,
       '\nAverage Score:', scores.mean(),
       # Unique Pairs (Combinations) of 2 observations
       # C(n,r)=n!/(r!(n−r)!)
@@ -159,6 +163,7 @@ print('Individual Scores:', scores,
 ss = ShuffleSplit(train_size=0.6, test_size=0.3, n_splits=5)
 scores = cross_val_score(clf, X, y, cv=ss)
 
-print('Individual Scores:', scores,
+print('\nShuffle Split',
+      '\nIndividual Scores:', scores,
       '\nAverage Score:', scores.mean(),
       '\nNumber of scores used in Average:', len(scores))
